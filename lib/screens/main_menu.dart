@@ -4,8 +4,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sengped_flutter_profile/components/general_dialog.dart';
+import 'package:sengped_flutter_profile/screens/sections/profile.dart';
+import 'package:sengped_flutter_profile/screens/sections/skills.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -15,6 +16,15 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  Color appbarTextColor = Colors.white;
+  double opacity = 0.0;
+  late ScrollController _scrollController = ScrollController();
+  List<Widget> sections = [
+    const Profile(),
+    const Skills(),
+    const Profile(),
+    const Skills(),
+  ];
   int currentPage = 0;
 
   Color? getActiveColor(index) {
@@ -22,163 +32,178 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == 0) {
+        setState(() {
+          opacity = 0.0;
+          appbarTextColor = Colors.white;
+        });
+      } else if (_scrollController.position.pixels > 0) {
+        setState(() {
+          opacity = 1.0;
+          appbarTextColor = Colors.grey[800]!;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: null,
-      body: Stack(children: [
-        Opacity(
-          opacity: 0.9,
-          child: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/abstract.png'),
-                    fit: BoxFit.cover)),
-          ),
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
-            child: Container(
-              width: double.infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                  color: Colors.grey[800]!.withOpacity(0.25),
-                  borderRadius:
-                      const BorderRadius.vertical(bottom: Radius.circular(20))),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25, top: 30, right: 25),
-                child: Row(
+        appBar: null,
+        body: SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Stack(children: [
+              Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/abstract.png'),
+                        fit: BoxFit.cover)),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 95),
+                child: Column(
                   children: [
-                    const Text(
-                      "Donnukrit Satirakul",
-                      style: TextStyle(
-                          color: Colors.white,
-                          letterSpacing: 1.25,
-                          fontSize: 18),
-                    ),
-                    const Spacer(),
-                    InkWell(
-                      onTap: () {
-                        Alert().showModal(context);
-                      },
-                      child: SvgPicture.asset(
-                        'assets/images/icons/information-circle-outline.svg',
-                        width: 24,
-                        color: Colors.white,
-                      ),
-                    )
+                    Flexible(
+                        child: ListView(
+                      controller: _scrollController,
+                      children: [
+                        sections[currentPage]
+                      ],
+                      // color: Colors.blue,
+                    ))
                   ],
                 ),
               ),
-            ),
-          ),
-        ),
-        Container(
-          // color: Colors.white.withOpacity(0.25),
-          width: double.infinity,
-          height: double.infinity,
+              Positioned(
+                bottom: 0,
+                child: _navigationBar(context),
+              ),
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(opacity),
+                    borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(15))),
+                height: 100,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Row(children: [
+                    Expanded(
+                        child: Text(
+                      'Donnukrit Satirakul',
+                      style: TextStyle(
+                        fontSize: 18,
+                        letterSpacing: 1.25,
+                        fontWeight: FontWeight.w200,
+                        color: appbarTextColor,
+                      ),
+                    )),
+                    InkWell(
+                      onTap: () => Alert().showModal(context),
+                      child: SvgPicture.asset(
+                        'assets/images/icons/information-circle-outline.svg',
+                        color: appbarTextColor,
+                        width: 24,
+                      ),
+                    )
+                  ]),
+                ),
+              ),
+            ])));
+  }
 
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(
-                height: 200,
-              ),
-              Expanded(
-                  child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20))),
-                child: Text('test'),
-              )),
-            ],
+  Container _navigationBar(BuildContext context) {
+    return Container(
+      height: 85,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF252525).withOpacity(0.25),
+            blurRadius: 10.0,
+          )
+        ],
+        color: Colors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+      ),
+      child: Row(children: [
+        NavigatorIcon(
+          0,
+          activeColor: getActiveColor(0),
+          icon: SvgPicture.asset(
+            'assets/images/icons/person-outline.svg',
+            width: 24,
+            color: getActiveColor(0),
           ),
+          label: 'Profile',
+          onChangeIndex: (index) {
+            setState(() {
+              currentPage = index;
+            });
+            log(index.toString());
+          },
         ),
-        Positioned(
-          bottom: 0,
-          child: Container(
-            height: 85,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFF252525).withOpacity(0.25),
-                  blurRadius: 10.0,
-                )
-              ],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(children: [
-              NavigatorIcon(
-                0,
-                activeColor: getActiveColor(0),
-                icon: SvgPicture.asset(
-                  'assets/images/icons/person-outline.svg',
-                  width: 24,
-                  color: getActiveColor(0),
-                ),
-                label: 'Profile',
-                onChangeIndex: (index) {
-                  setState(() {
-                    currentPage = index;
-                  });
-                  log(index.toString());
-                },
-              ),
-              NavigatorIcon(
-                1,
-                activeColor: getActiveColor(1),
-                icon: SvgPicture.asset(
-                  'assets/images/icons/code-slash-outline.svg',
-                  width: 24,
-                  color: getActiveColor(1),
-                ),
-                label: 'Skills',
-                onChangeIndex: (index) {
-                  setState(() {
-                    currentPage = index;
-                  });
-                  log(index.toString());
-                },
-              ),
-              NavigatorIcon(
-                2,
-                activeColor: getActiveColor(2),
-                icon: SvgPicture.asset(
-                  'assets/images/icons/newspaper-outline.svg',
-                  width: 24,
-                  color: getActiveColor(2),
-                ),
-                label: 'Education',
-                onChangeIndex: (index) {
-                  setState(() {
-                    currentPage = index;
-                  });
-                  log(index.toString());
-                },
-              ),
-              NavigatorIcon(
-                3,
-                activeColor: getActiveColor(3),
-                icon: SvgPicture.asset(
-                  'assets/images/icons/briefcase-outline.svg',
-                  color: getActiveColor(3),
-                  width: 24,
-                ),
-                label: 'Experience',
-                onChangeIndex: (index) {
-                  setState(() {
-                    currentPage = index;
-                  });
-                  log(index.toString());
-                },
-              ),
-            ]),
+        NavigatorIcon(
+          1,
+          activeColor: getActiveColor(1),
+          icon: SvgPicture.asset(
+            'assets/images/icons/code-slash-outline.svg',
+            width: 24,
+            color: getActiveColor(1),
           ),
-        )
+          label: 'Skills',
+          onChangeIndex: (index) {
+            setState(() {
+              currentPage = index;
+            });
+            log(index.toString());
+          },
+        ),
+        NavigatorIcon(
+          2,
+          activeColor: getActiveColor(2),
+          icon: SvgPicture.asset(
+            'assets/images/icons/newspaper-outline.svg',
+            width: 24,
+            color: getActiveColor(2),
+          ),
+          label: 'Education',
+          onChangeIndex: (index) {
+            setState(() {
+              currentPage = index;
+            });
+            log(index.toString());
+          },
+        ),
+        NavigatorIcon(
+          3,
+          activeColor: getActiveColor(3),
+          icon: SvgPicture.asset(
+            'assets/images/icons/briefcase-outline.svg',
+            color: getActiveColor(3),
+            width: 24,
+          ),
+          label: 'Experience',
+          onChangeIndex: (index) {
+            setState(() {
+              currentPage = index;
+            });
+            log(index.toString());
+          },
+        ),
       ]),
     );
   }
@@ -225,34 +250,37 @@ class _NavigatorIconState extends State<NavigatorIcon> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        widget.onChangeIndex(currentIndex);
-      },
-      child: Container(
-        // duration: const Duration(milliseconds: 200),
-        // color: Colors.transparent,
-        width: 25.w,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Spacer(
-              flex: 4,
-            ),
-            widget.icon ??
-                const Text(
-                  "",
-                ),
-            const Spacer(
-              flex: 2,
-            ),
-            Text(widget.label,
-                style: TextStyle(color: widget.activeColor ?? Colors.black87)),
-            const Spacer(
-              flex: 4,
-            ),
-          ],
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          widget.onChangeIndex(currentIndex);
+        },
+        child: Container(
+          // duration: const Duration(milliseconds: 200),
+          // color: Colors.transparent,
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Spacer(
+                flex: 4,
+              ),
+              widget.icon ??
+                  const Text(
+                    "",
+                  ),
+              const Spacer(
+                flex: 2,
+              ),
+              Text(widget.label,
+                  style:
+                      TextStyle(color: widget.activeColor ?? Colors.black87)),
+              const Spacer(
+                flex: 4,
+              ),
+            ],
+          ),
         ),
       ),
     );
