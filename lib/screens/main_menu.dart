@@ -16,8 +16,9 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
-  Color appbarTextColor = Colors.white;
-  double opacity = 0.5;
+  Color appbarTextColor = Colors.black;
+  late Color appbarColor;
+  bool isFinish = false;
   late ScrollController _scrollController = ScrollController();
   List<Widget> sections = [
     const Profile(),
@@ -34,16 +35,19 @@ class _MainMenuState extends State<MainMenu> {
   @override
   void initState() {
     super.initState();
+    appbarColor = Colors.transparent;
     _scrollController.addListener(() {
       if (_scrollController.position.pixels == 0) {
         setState(() {
-          opacity = 0.0;
           appbarTextColor = Colors.white;
+          appbarColor = Colors.transparent;
+          isFinish = false;
         });
       } else if (_scrollController.position.pixels > 0) {
         setState(() {
-          opacity = 1.0;
           appbarTextColor = Colors.grey[800]!;
+          appbarColor = Colors.white;
+          isFinish = true;
         });
       }
     });
@@ -64,14 +68,17 @@ class _MainMenuState extends State<MainMenu> {
             width: double.infinity,
             height: double.infinity,
             child: Stack(children: [
-              // Container(
-              // decoration: const BoxDecoration(
-              //     image: DecorationImage(
-              //         image: AssetImage('assets/images/abstract.png'),
-              //         fit: BoxFit.cover)),
-              // ),
+              if (currentPage == 0)
+                SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Image.asset(
+                    'assets/images/abstract.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
               Container(
-                margin: const EdgeInsets.only(top: 40),
+                margin: const EdgeInsets.only(top: 120),
                 child: Column(
                   children: [
                     Flexible(
@@ -82,7 +89,10 @@ class _MainMenuState extends State<MainMenu> {
                               controller: _scrollController,
                               children: [sections[currentPage]],
                               // color: Colors.blue,
-                            )))
+                            ))),
+                    const SizedBox(
+                      height: 85,
+                    ),
                   ],
                 ),
               ),
@@ -91,20 +101,26 @@ class _MainMenuState extends State<MainMenu> {
                 child: _navigationBar(context),
               ),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 15,
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(opacity),
-                ),
+                decoration: BoxDecoration(color: appbarColor, boxShadow: [
+                  if (isFinish)
+                    BoxShadow(
+                      color: const Color(0xFF252525).withOpacity(0.25),
+                      offset: const Offset(1, -2),
+                      spreadRadius: 0.5,
+                      blurRadius: 10.0,
+                    ),
+                ]),
                 height: 100,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Row(children: [
                     Expanded(
                         child: Text(
-                      'Donnukrit Satirakul',
+                      "Donnukrit's Resume",
                       style: TextStyle(
                         fontSize: 18,
                         letterSpacing: 1.25,
@@ -258,7 +274,6 @@ class _NavigatorIconState extends State<NavigatorIcon> {
         },
         child: Container(
           // duration: const Duration(milliseconds: 200),
-          // color: Colors.transparent,
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

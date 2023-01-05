@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sengped_flutter_profile/api_services.dart';
 import 'package:sengped_flutter_profile/screens/main_menu.dart';
-import 'package:sengped_flutter_profile/size_config.dart';
 
 void main() {
   ApiServices().init();
@@ -33,7 +32,7 @@ class _MyAppState extends State<MyApp> {
       builder: (BuildContext context, Orientation orientation,
           ScreenType screenType) {
         return DevicePreview(
-          isToolbarVisible: true,
+          isToolbarVisible: false,
           enabled: screenType != ScreenType.mobile,
           builder: (context) {
             return MaterialApp(
