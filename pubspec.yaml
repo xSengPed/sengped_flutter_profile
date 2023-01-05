@@ -26,6 +26,7 @@ dependencies:
   card_swiper: ^2.0.4
   flutter_svg: ^1.1.6
   dio: ^4.0.6
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +42,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/abstract.png
+    - assets/images/layered-waves-haikei.png
+    - assets/images/layered-waves-haikei.svg
     - assets/images/phone-call.png
     - assets/images/plum-plate.png
     - assets/images/icons/skills/

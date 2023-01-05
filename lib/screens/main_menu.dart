@@ -16,7 +16,7 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
-  Color appbarTextColor = Colors.black;
+  Color appbarTextColor = Colors.white;
   late Color appbarColor;
   bool isFinish = false;
   late ScrollController _scrollController = ScrollController();
@@ -35,7 +35,9 @@ class _MainMenuState extends State<MainMenu> {
   @override
   void initState() {
     super.initState();
+
     appbarColor = Colors.transparent;
+
     _scrollController.addListener(() {
       if (_scrollController.position.pixels == 0) {
         setState(() {
@@ -63,26 +65,26 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: null,
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[100],
         body: SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Stack(children: [
-              if (currentPage == 0)
-                SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Image.asset(
-                    'assets/images/abstract.png',
-                    fit: BoxFit.cover,
-                  ),
+              SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: SvgPicture.asset(
+                  'assets/images/layered-waves-haikei.svg',
+                  fit: BoxFit.cover,
                 ),
+              ),
               Container(
                 margin: const EdgeInsets.only(top: 120),
                 child: Column(
                   children: [
                     Flexible(
                         child: MediaQuery.removePadding(
+                            removeTop: true,
                             context: context,
                             child: ListView(
                               shrinkWrap: true,
@@ -168,6 +170,8 @@ class _MainMenuState extends State<MainMenu> {
           label: 'Profile',
           onChangeIndex: (index) {
             setState(() {
+              appbarColor = Colors.transparent;
+              appbarTextColor = Colors.white;
               currentPage = index;
             });
             log(index.toString());
@@ -184,6 +188,8 @@ class _MainMenuState extends State<MainMenu> {
           label: 'Skills',
           onChangeIndex: (index) {
             setState(() {
+              appbarColor = Colors.transparent;
+              appbarTextColor = Colors.white;
               currentPage = index;
             });
             log(index.toString());
@@ -200,6 +206,8 @@ class _MainMenuState extends State<MainMenu> {
           label: 'Education',
           onChangeIndex: (index) {
             setState(() {
+              appbarColor = Colors.transparent;
+              appbarTextColor = Colors.white;
               currentPage = index;
             });
             log(index.toString());
@@ -216,6 +224,8 @@ class _MainMenuState extends State<MainMenu> {
           label: 'Experience',
           onChangeIndex: (index) {
             setState(() {
+              appbarColor = Colors.transparent;
+              appbarTextColor = Colors.white;
               currentPage = index;
             });
             log(index.toString());
