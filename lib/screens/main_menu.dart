@@ -17,7 +17,7 @@ class MainMenu extends StatefulWidget {
 
 class _MainMenuState extends State<MainMenu> {
   Color appbarTextColor = Colors.white;
-  double opacity = 0.0;
+  double opacity = 0.5;
   late ScrollController _scrollController = ScrollController();
   List<Widget> sections = [
     const Profile(),
@@ -59,28 +59,30 @@ class _MainMenuState extends State<MainMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: null,
+        backgroundColor: Colors.grey[200],
         body: SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Stack(children: [
+              // Container(
+              // decoration: const BoxDecoration(
+              //     image: DecorationImage(
+              //         image: AssetImage('assets/images/abstract.png'),
+              //         fit: BoxFit.cover)),
+              // ),
               Container(
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/abstract.png'),
-                        fit: BoxFit.cover)),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 95),
+                margin: const EdgeInsets.only(top: 40),
                 child: Column(
                   children: [
                     Flexible(
-                        child: ListView(
-                      controller: _scrollController,
-                      children: [
-                        sections[currentPage]
-                      ],
-                      // color: Colors.blue,
-                    ))
+                        child: MediaQuery.removePadding(
+                            context: context,
+                            child: ListView(
+                              shrinkWrap: true,
+                              controller: _scrollController,
+                              children: [sections[currentPage]],
+                              // color: Colors.blue,
+                            )))
                   ],
                 ),
               ),
@@ -94,9 +96,8 @@ class _MainMenuState extends State<MainMenu> {
                   horizontal: 15,
                 ),
                 decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(opacity),
-                    borderRadius: const BorderRadius.vertical(
-                        bottom: Radius.circular(15))),
+                  color: Colors.black.withOpacity(opacity),
+                ),
                 height: 100,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),

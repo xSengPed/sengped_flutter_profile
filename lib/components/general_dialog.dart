@@ -29,7 +29,7 @@ class Alert {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
         return ContactUsModalSheet();
@@ -77,7 +77,10 @@ class ContactUsModalSheet extends StatelessWidget {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: const Icon(Icons.close , color: Colors.white,)),
+                      child: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      )),
                 ],
               ),
             ),
@@ -87,7 +90,7 @@ class ContactUsModalSheet extends StatelessWidget {
             Flexible(
               flex: 4,
               child: Card(
-                shape: const RoundedRectangleBorder(
+                shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(20))),
                 margin: const EdgeInsets.all(0),

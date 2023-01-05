@@ -43,6 +43,8 @@ flutter:
     - assets/images/abstract.png
     - assets/images/phone-call.png
     - assets/images/plum-plate.png
+    - assets/images/icons/skills/
+  
     - assets/images/icons/
     - assets/images/icons/briefcase-outline.svg
     - assets/images/icons/code-slash-outline.svg
