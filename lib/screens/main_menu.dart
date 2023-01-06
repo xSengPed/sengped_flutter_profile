@@ -3,10 +3,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sengped_flutter_profile/components/general_dialog.dart';
+import 'package:sengped_flutter_profile/providers/screen_provider.dart';
+import 'package:sengped_flutter_profile/screens/sections/education.dart';
+import 'package:sengped_flutter_profile/screens/sections/experience.dart';
 import 'package:sengped_flutter_profile/screens/sections/profile.dart';
 import 'package:sengped_flutter_profile/screens/sections/skills.dart';
+import 'package:sengped_flutter_profile/size_config.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({Key? key}) : super(key: key);
@@ -16,35 +21,45 @@ class MainMenu extends StatefulWidget {
 }
 
 class _MainMenuState extends State<MainMenu> {
+  late ScreenProvider screenProvider;
   Color appbarTextColor = Colors.white;
   late Color appbarColor;
   bool isFinish = false;
-  late ScrollController _scrollController = ScrollController();
+  late final ScrollController _scrollController = ScrollController();
   List<Widget> sections = [
     const Profile(),
     const Skills(),
-    const Profile(),
-    const Skills(),
+    const Education(),
+    const Experience(),
   ];
   int currentPage = 0;
 
   Color? getActiveColor(index) {
-    return currentPage == index ? Colors.blue : null;
+    return currentPage == index ? const Color(0xFFd53867) : null;
   }
 
   @override
   void initState() {
     super.initState();
+    screenProvider = Provider.of<ScreenProvider>(context, listen: false);
 
     appbarColor = Colors.transparent;
 
     _scrollController.addListener(() {
+      screenProvider.setScrollPosition(_scrollController.position.pixels);
+
       if (_scrollController.position.pixels == 0) {
+        log('start');
         setState(() {
           appbarTextColor = Colors.white;
           appbarColor = Colors.transparent;
           isFinish = false;
+          screenProvider.setScrollFinish(false);
         });
+      } else if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        log('end');
+        screenProvider.setScrollFinish(true);
       } else if (_scrollController.position.pixels > 0) {
         setState(() {
           appbarTextColor = Colors.grey[800]!;
@@ -63,6 +78,8 @@ class _MainMenuState extends State<MainMenu> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    final double defaultSize = SizeConfig.defaultSize;
     return Scaffold(
         appBar: null,
         backgroundColor: Colors.grey[100],
@@ -120,22 +137,25 @@ class _MainMenuState extends State<MainMenu> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Row(children: [
-                    Expanded(
-                        child: Text(
-                      "Donnukrit's Resume",
-                      style: TextStyle(
-                        fontSize: 18,
-                        letterSpacing: 1.25,
-                        fontWeight: FontWeight.w200,
-                        color: appbarTextColor,
-                      ),
-                    )),
+                    Consumer<ScreenProvider>(
+                        builder: (context, ScreenProvider provider, child) {
+                      return Expanded(
+                          child: Text(
+                        provider.screenName,
+                        style: TextStyle(
+                          fontSize: 18,
+                          letterSpacing: 1.25,
+                          fontWeight: FontWeight.w200,
+                          color: appbarTextColor,
+                        ),
+                      ));
+                    }),
                     InkWell(
                       onTap: () => Alert().showModal(context),
                       child: SvgPicture.asset(
                         'assets/images/icons/information-circle-outline.svg',
                         color: appbarTextColor,
-                        width: 24,
+                        width: 2.8 * defaultSize,
                       ),
                     )
                   ]),
@@ -169,6 +189,7 @@ class _MainMenuState extends State<MainMenu> {
           ),
           label: 'Profile',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Profile");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
@@ -187,6 +208,7 @@ class _MainMenuState extends State<MainMenu> {
           ),
           label: 'Skills',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Skills");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
@@ -205,6 +227,7 @@ class _MainMenuState extends State<MainMenu> {
           ),
           label: 'Education',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Education");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
@@ -221,8 +244,9 @@ class _MainMenuState extends State<MainMenu> {
             color: getActiveColor(3),
             width: 24,
           ),
-          label: 'Experience',
+          label: 'Experiences',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Experiences");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;

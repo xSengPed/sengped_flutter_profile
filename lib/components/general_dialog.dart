@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:sengped_flutter_profile/screens/sections/experience.dart';
 
 class Alert {
   show(BuildContext context) {
@@ -54,22 +56,18 @@ class ContactUsModalSheet extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Opacity(
-            opacity: 0.7,
-            child: Image.asset(
-              'assets/images/plum-plate.png',
-              fit: BoxFit.fill,
-            ),
+          Container(
+            color: const Color(0xff001220),
           ),
           Column(children: [
             Container(
-              height: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              height: 10 * defaultSize,
+              padding: EdgeInsets.symmetric(horizontal: 2.5 * defaultSize),
               child: Row(
                 children: [
                   Text('Contact Information',
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 1.8 * defaultSize,
                           letterSpacing: 1.25,
                           color: Colors.white)),
                   const Spacer(),
@@ -84,41 +82,45 @@ class ContactUsModalSheet extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             Flexible(
               flex: 4,
               child: Card(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(20))),
                 margin: const EdgeInsets.all(0),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: EdgeInsets.symmetric(horizontal: 2.5 * defaultSize),
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 25,
+                      SizedBox(
+                        height: 2.5 * defaultSize,
                       ),
-                      Image.asset('assets/images/phone-call.png', width: 25.w),
-                      const SizedBox(
-                        height: 25,
+                      Image.asset('assets/images/phone-call.png',
+                          width: 4.8 * defaultSize),
+                      SizedBox(
+                        height: 2.5 * defaultSize,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             'assets/images/icons/logo-linkedin.svg',
-                            width: 24,
+                            width: 2.4 * defaultSize,
                           ),
-                          const SizedBox(
-                            width: 25,
+                          SizedBox(
+                            width: 2.5 * defaultSize,
                           ),
                           const Text("www.linkedin.com/in/donnukrit"),
                           const Spacer(),
                           InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                await Clipboard.setData(const ClipboardData(
+                                    text: "www.linkedin.com/in/donnukrit"));
+                              },
                               child: const Icon(
                                 Icons.copy,
                                 size: 16,

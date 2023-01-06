@@ -1,7 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sengped_flutter_profile/components/award.dart';
 import 'package:sengped_flutter_profile/size_config.dart';
 
@@ -52,33 +50,30 @@ class _ProfileState extends State<Profile> {
         ),
         Card(
           child: Column(children: [
-            // const PersonalInfoTile(
-            //     leading: Text(
-            //       (''),
-            //     ),
-            //     trailing: Text('General')),
-
             Container(
                 padding: EdgeInsets.only(
                     top: 1.6 * defaultSize, left: 1.6 * defaultSize),
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'General',
-                  style: TextStyle(fontSize: 1.4 * defaultSize),
+                  style: TextStyle(
+                      fontSize: 1.4 * defaultSize,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.25),
                 )),
             PersonalInfoTile(
-                leading: Icon(
-                  Icons.business,
-                  size: 1.8 * defaultSize,
+                leading: SvgPicture.asset(
+                  'assets/images/icons/business-outline.svg',
+                  width: 1.8 * defaultSize,
                 ),
                 trailing: Text(
                   'Exvention Co. Ltd, Bangkok',
                   style: TextStyle(fontSize: 1.2 * defaultSize),
                 )),
             PersonalInfoTile(
-              leading: Icon(
-                Icons.home,
-                size: 1.8 * defaultSize,
+              leading: SvgPicture.asset(
+                'assets/images/icons/navigate-outline.svg',
+                width: 1.8 * defaultSize,
               ),
               trailing: Text(
                 'Live in Kathu , Phuket',
@@ -99,7 +94,10 @@ class _ProfileState extends State<Profile> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'About',
-                      style: TextStyle(fontSize: 1.4 * defaultSize),
+                      style: TextStyle(
+                          fontSize: 1.4 * defaultSize,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.25),
                     )),
                 Row(
                   children: [
@@ -119,18 +117,27 @@ I have an experience in mobile applications development for 3 years.\nI'm able t
           ),
         ),
         Card(
-          child: Column(children: const [
+          child: Column(children: [
             PersonalInfoTile(
-              leading: Icon(Icons.star),
-              trailing: Text("Honors & awards"),
+              leading: SvgPicture.asset(
+                'assets/images/icons/trophy-outline.svg',
+                width: 1.8 * defaultSize,
+              ),
+              trailing: Text(
+                "Honors & awards",
+                style: TextStyle(
+                    fontSize: 1.4 * defaultSize,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1.25),
+              ),
             ),
-            Award(
+            const Award(
               title: "The Nineteenth Thailand IT Contest Festival 2020",
               issueBy: "Issued by NECTEC · Mar 2020",
               desc:
                   "Got a scholarship funded project developer voice assistant robot.At National Software Contest 21 (NSC'21)",
             ),
-            Award(
+            const Award(
               title: "National Software Contest : Southern Region",
               issueBy:
                   "Issued by Department of Computer Engineering, Faculty of Engineering, Prince of Songkhla University Hat Yai Campus · Feb 2020",
