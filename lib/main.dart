@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,6 +39,14 @@ class _MyAppState extends State<MyApp> {
           enabled: screenType != ScreenType.mobile,
           builder: (context) {
             return MaterialApp(
+              scrollBehavior: const MaterialScrollBehavior().copyWith(
+                dragDevices: {
+                  PointerDeviceKind.mouse,
+                  PointerDeviceKind.touch,
+                  PointerDeviceKind.stylus,
+                  PointerDeviceKind.unknown
+                },
+              ),
               useInheritedMediaQuery: true,
               debugShowCheckedModeBanner: false,
               theme: ThemeData(
