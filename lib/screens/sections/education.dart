@@ -23,6 +23,9 @@ class Education extends StatelessWidget {
                   TextStyle(fontSize: 1.8 * defaultSize, color: Colors.white),
             ),
           ),
+          SizedBox(
+            height: 1.6 * defaultSize,
+          ),
           EducationWidget(
             leading: Image.asset(
               'assets/images/icons/graduation-hat.png',
@@ -41,16 +44,15 @@ class Education extends StatelessWidget {
                   style: TextStyle(fontSize: 1.2 * defaultSize)),
               Text('2016 - 2020',
                   style: TextStyle(fontSize: 1.2 * defaultSize)),
-              Text('(Bachelor of Engineering)',
-                  style: TextStyle(fontSize: 1.2 * defaultSize)),
-              Text('(Computer Engineering)',
+              Text('(B.Eng)', style: TextStyle(fontSize: 1.2 * defaultSize)),
+              Text('(Computer Engineering : Information Engineering)',
                   style: TextStyle(fontSize: 1.2 * defaultSize)),
               Text('(GPA : 2.64)',
                   style: TextStyle(fontSize: 1.2 * defaultSize)),
             ]),
           ),
           SizedBox(
-            height: 0.8 * defaultSize,
+            height: 1.6 * defaultSize,
           ),
           EducationWidget(
             leading: Image.asset(
@@ -73,17 +75,6 @@ class Education extends StatelessWidget {
                   style: TextStyle(fontSize: 1.2 * defaultSize)),
             ]),
           ),
-          HeaderTile(
-            leading: Image.asset(
-              'assets/images/icons/certificate.png',
-              width: 2.8 * defaultSize,
-            ),
-            trailing: Text(
-              "Certification",
-              style:
-                  TextStyle(fontSize: 1.8 * defaultSize, color: Colors.white),
-            ),
-          )
         ],
       ),
     );

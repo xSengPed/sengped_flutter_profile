@@ -62,7 +62,7 @@ class _MainMenuState extends State<MainMenu> {
         screenProvider.setScrollFinish(true);
       } else if (_scrollController.position.pixels > 0) {
         setState(() {
-          appbarTextColor = Colors.grey[800]!;
+          appbarTextColor = const Color(0xFF1c202a);
           appbarColor = Colors.white;
           isFinish = true;
         });
@@ -100,8 +100,8 @@ class _MainMenuState extends State<MainMenu> {
                 children: [
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 15,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 1.5 * defaultSize,
                     ),
                     decoration: BoxDecoration(color: appbarColor, boxShadow: [
                       if (isFinish)
@@ -112,30 +112,33 @@ class _MainMenuState extends State<MainMenu> {
                           blurRadius: 10.0,
                         ),
                     ]),
-                    height: 100,
+                    height: 10 * defaultSize,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
+                      padding: EdgeInsets.only(top: 1.5 * defaultSize),
                       child: Row(children: [
                         Consumer<ScreenProvider>(
                             builder: (context, ScreenProvider provider, child) {
                           return Expanded(
                               child: Text(
-                            provider.screenName,
+                            provider.screenName.toUpperCase(),
                             style: TextStyle(
-                              fontSize: 18,
-                              letterSpacing: 1.25,
-                              fontWeight: FontWeight.w200,
+                              fontSize: 1.8 * defaultSize,
+                              letterSpacing: 1.75,
+                              fontWeight: FontWeight.w600,
                               color: appbarTextColor,
                             ),
                           ));
                         }),
                         InkWell(
                           onTap: () => Alert().showModal(context),
-                          child: SvgPicture.asset(
-                            'assets/images/icons/information-circle-outline.svg',
-                            color: appbarTextColor,
-                            width: 2.8 * defaultSize,
-                          ),
+                          // child: SvgPicture.asset(
+                          //   'assets/images/icons/information-circle-outline.svg',
+                          //   color: appbarTextColor,
+                          //   width: 2.8 * defaultSize,
+                          // ),
+
+                          child: Icon(Icons.info_outline_rounded,
+                              color: appbarTextColor, size: 2.8 * defaultSize),
                         )
                       ]),
                     ),
@@ -156,8 +159,10 @@ class _MainMenuState extends State<MainMenu> {
   }
 
   Container _navigationBar(BuildContext context) {
+    SizeConfig().init(context);
+    final double defaultSize = SizeConfig.defaultSize;
     return Container(
-      height: 85,
+      height: 8.5 * defaultSize,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         boxShadow: [
@@ -175,7 +180,7 @@ class _MainMenuState extends State<MainMenu> {
           activeColor: getActiveColor(0),
           icon: SvgPicture.asset(
             'assets/images/icons/person-outline.svg',
-            width: 24,
+            width: 2.4 * defaultSize,
             color: getActiveColor(0),
           ),
           label: 'Profile',
@@ -194,7 +199,7 @@ class _MainMenuState extends State<MainMenu> {
           activeColor: getActiveColor(1),
           icon: SvgPicture.asset(
             'assets/images/icons/code-slash-outline.svg',
-            width: 24,
+            width: 2.4 * defaultSize,
             color: getActiveColor(1),
           ),
           label: 'Skills',
@@ -213,7 +218,7 @@ class _MainMenuState extends State<MainMenu> {
           activeColor: getActiveColor(2),
           icon: SvgPicture.asset(
             'assets/images/icons/newspaper-outline.svg',
-            width: 24,
+            width: 2.4 * defaultSize,
             color: getActiveColor(2),
           ),
           label: 'Education',
@@ -233,7 +238,7 @@ class _MainMenuState extends State<MainMenu> {
           icon: SvgPicture.asset(
             'assets/images/icons/briefcase-outline.svg',
             color: getActiveColor(3),
-            width: 24,
+            width: 2.4 * defaultSize,
           ),
           label: 'Experiences',
           onChangeIndex: (index) {

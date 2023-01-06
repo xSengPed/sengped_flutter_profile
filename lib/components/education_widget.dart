@@ -14,11 +14,14 @@ class EducationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(minHeight: 15 * defaultSize),
       padding: EdgeInsets.all(1 * defaultSize),
       decoration: BoxDecoration(
           color: backgroundColor ?? Colors.white,
           borderRadius: BorderRadius.circular(15)),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           leading ?? Container(),
           Expanded(child: trailing ?? Container())
