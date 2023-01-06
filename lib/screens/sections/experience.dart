@@ -167,26 +167,25 @@ class Experience extends StatelessWidget {
         ),
         Consumer<ScreenProvider>(
           builder: (context, ScreenProvider screenProvider, child) {
-            return AnimatedOpacity(
-              opacity: screenProvider.isScrollFinish ? 1.0 : 0,
-              duration: const Duration(milliseconds: 600),
-              child: SizedBox(
-                width: 75.w,
-                height: 4.5 * defaultSize,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: const Color(0xFF001220),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50))),
-                    child: const Text('View Another Projects'),
-                    onPressed: () {}),
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AnimatedOpacity(
+                opacity: screenProvider.isScrollFinish ? 1.0 : 0,
+                duration: const Duration(milliseconds: 600),
+                child: SizedBox(
+                  height: 4.5 * defaultSize,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: const Color(0xFF001220),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50))),
+                      child: const Text('View Another Projects'),
+                      onPressed: () {}),
+                ),
               ),
             );
           },
-        ),
-        SizedBox(
-          height: 2.4 * defaultSize,
         ),
       ],
     );
