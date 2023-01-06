@@ -95,71 +95,62 @@ class _MainMenuState extends State<MainMenu> {
                   fit: BoxFit.cover,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 120),
-                child: Column(
-                  children: [
-                    Flexible(
-                        child: MediaQuery.removePadding(
-                            removeTop: true,
-                            context: context,
-                            child: ListView(
-                              shrinkWrap: true,
-                              controller: _scrollController,
-                              children: [sections[currentPage]],
-                              // color: Colors.blue,
-                            ))),
-                    const SizedBox(
-                      height: 85,
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 15,
                     ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                child: _navigationBar(context),
-              ),
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                decoration: BoxDecoration(color: appbarColor, boxShadow: [
-                  if (isFinish)
-                    BoxShadow(
-                      color: const Color(0xFF252525).withOpacity(0.25),
-                      offset: const Offset(1, -2),
-                      spreadRadius: 0.5,
-                      blurRadius: 10.0,
-                    ),
-                ]),
-                height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Row(children: [
-                    Consumer<ScreenProvider>(
-                        builder: (context, ScreenProvider provider, child) {
-                      return Expanded(
-                          child: Text(
-                        provider.screenName,
-                        style: TextStyle(
-                          fontSize: 18,
-                          letterSpacing: 1.25,
-                          fontWeight: FontWeight.w200,
-                          color: appbarTextColor,
+                    decoration: BoxDecoration(color: appbarColor, boxShadow: [
+                      if (isFinish)
+                        BoxShadow(
+                          color: const Color(0xFF252525).withOpacity(0.25),
+                          offset: const Offset(1, -2),
+                          spreadRadius: 0.5,
+                          blurRadius: 10.0,
                         ),
-                      ));
-                    }),
-                    InkWell(
-                      onTap: () => Alert().showModal(context),
-                      child: SvgPicture.asset(
-                        'assets/images/icons/information-circle-outline.svg',
-                        color: appbarTextColor,
-                        width: 2.8 * defaultSize,
-                      ),
-                    )
-                  ]),
-                ),
+                    ]),
+                    height: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Row(children: [
+                        Consumer<ScreenProvider>(
+                            builder: (context, ScreenProvider provider, child) {
+                          return Expanded(
+                              child: Text(
+                            provider.screenName,
+                            style: TextStyle(
+                              fontSize: 18,
+                              letterSpacing: 1.25,
+                              fontWeight: FontWeight.w200,
+                              color: appbarTextColor,
+                            ),
+                          ));
+                        }),
+                        InkWell(
+                          onTap: () => Alert().showModal(context),
+                          child: SvgPicture.asset(
+                            'assets/images/icons/information-circle-outline.svg',
+                            color: appbarTextColor,
+                            width: 2.8 * defaultSize,
+                          ),
+                        )
+                      ]),
+                    ),
+                  ),
+                  Flexible(
+                      child: MediaQuery.removePadding(
+                          removeTop: true,
+                          context: context,
+                          child: ListView(
+                            controller: _scrollController,
+                            children: [sections[currentPage]],
+                            // color: Colors.blue,
+                          ))),
+                  _navigationBar(context)
+                ],
               ),
             ])));
   }
