@@ -115,7 +115,7 @@ class _SkillsState extends State<Skills> {
         HeaderTile(
           leading: Image.asset(
             'assets/images/icons/skills/user-interface.png',
-            width: 2.4 * defaultSize,
+            width: 2.8 * defaultSize,
           ),
           trailing: const Text(
             'Primary',
@@ -134,7 +134,7 @@ class _SkillsState extends State<Skills> {
         HeaderTile(
           leading: Image.asset(
             'assets/images/icons/skills/ux.png',
-            width: 2.4 * defaultSize,
+            width: 2.8 * defaultSize,
           ),
           trailing: const Text(
             'Other Skills',

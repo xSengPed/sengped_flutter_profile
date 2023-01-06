@@ -42,6 +42,7 @@ class _MainMenuState extends State<MainMenu> {
   void initState() {
     super.initState();
     screenProvider = Provider.of<ScreenProvider>(context, listen: false);
+
     appbarColor = Colors.transparent;
 
     _scrollController.addListener(() {
@@ -136,16 +137,19 @@ class _MainMenuState extends State<MainMenu> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Row(children: [
-                    Expanded(
-                        child: Text(
-                      "Donnukrit's Resume",
-                      style: TextStyle(
-                        fontSize: 18,
-                        letterSpacing: 1.25,
-                        fontWeight: FontWeight.w200,
-                        color: appbarTextColor,
-                      ),
-                    )),
+                    Consumer<ScreenProvider>(
+                        builder: (context, ScreenProvider provider, child) {
+                      return Expanded(
+                          child: Text(
+                        provider.screenName,
+                        style: TextStyle(
+                          fontSize: 18,
+                          letterSpacing: 1.25,
+                          fontWeight: FontWeight.w200,
+                          color: appbarTextColor,
+                        ),
+                      ));
+                    }),
                     InkWell(
                       onTap: () => Alert().showModal(context),
                       child: SvgPicture.asset(
@@ -185,6 +189,7 @@ class _MainMenuState extends State<MainMenu> {
           ),
           label: 'Profile',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Profile");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
@@ -203,6 +208,7 @@ class _MainMenuState extends State<MainMenu> {
           ),
           label: 'Skills',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Skills");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
@@ -221,6 +227,7 @@ class _MainMenuState extends State<MainMenu> {
           ),
           label: 'Education',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Education");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
@@ -237,8 +244,9 @@ class _MainMenuState extends State<MainMenu> {
             color: getActiveColor(3),
             width: 24,
           ),
-          label: 'Experience',
+          label: 'Experiences',
           onChangeIndex: (index) {
+            screenProvider.setScreenName("Experiences");
             setState(() {
               appbarColor = Colors.transparent;
               appbarTextColor = Colors.white;
