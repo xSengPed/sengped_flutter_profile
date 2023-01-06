@@ -2,8 +2,10 @@ import 'package:device_preview/device_preview.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:sengped_flutter_profile/api_services.dart';
+import 'package:sengped_flutter_profile/providers/screen_provider.dart';
 import 'package:sengped_flutter_profile/screens/main_menu.dart';
 
 void main() {
@@ -32,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       builder: (BuildContext context, Orientation orientation,
           ScreenType screenType) {
         return DevicePreview(
-          isToolbarVisible: false,
+          isToolbarVisible: true,
           enabled: screenType != ScreenType.mobile,
           builder: (context) {
             return MaterialApp(
@@ -42,7 +44,14 @@ class _MyAppState extends State<MyApp> {
                 textTheme: GoogleFonts.kanitTextTheme(),
                 primarySwatch: Colors.blue,
               ),
-              home: const MainMenu(),
+              home: MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(
+                    create: (_) => ScreenProvider(),
+                  )
+                ],
+                child: const MainMenu(),
+              ),
             );
           },
         );

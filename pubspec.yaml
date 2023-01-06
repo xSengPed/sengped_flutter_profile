@@ -28,6 +28,7 @@ dependencies:
   dio: ^4.0.6
   carousel_slider: ^4.2.1
   dots_indicator: ^2.1.0
+  timelines: ^0.1.0
 
 dev_dependencies:
   flutter_test:
@@ -48,7 +49,8 @@ flutter:
     - assets/images/phone-call.png
     - assets/images/plum-plate.png
     - assets/images/icons/skills/
-  
+    - assets/images/icons/works/
+
     - assets/images/icons/
     - assets/images/icons/briefcase-outline.svg
     - assets/images/icons/code-slash-outline.svg
@@ -57,8 +59,9 @@ flutter:
     - assets/images/icons/information-circle-outline.svg
     - assets/images/icons/mail-open-outline.svg
     - assets/images/icons/logo-linkedin.svg
-    
-    
+    - assets/images/icons/business-outline.svg
+    - assets/images/icons/navigate-outline.svg
+    - assets/images/icons/trophy-outline.svg
 
   #   - images/a_dot_ham.jpeg
 

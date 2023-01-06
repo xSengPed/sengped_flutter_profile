@@ -16,7 +16,8 @@ class Award extends StatelessWidget {
       padding: EdgeInsets.only(
           left: 2.0 * defaultSize,
           right: 2.0 * defaultSize,
-          bottom: 1 * defaultSize),
+          bottom: 1 * defaultSize,
+          top: 1 * defaultSize),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,9 +42,9 @@ class Award extends StatelessWidget {
               )
             ],
           ),
-          Row(
-            children: const [Expanded(child: Divider())],
-          )
+          SizedBox(
+            height: 1.2 * defaultSize,
+          ),
         ],
       ),
     );

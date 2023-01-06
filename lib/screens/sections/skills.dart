@@ -85,39 +85,41 @@ class _SkillsState extends State<Skills> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Card(
-          elevation: 0,
-          child: HeaderTile(
-            leading: Image.asset(
-              'assets/images/icons/skills/ux.png',
-              width: 2.4 * defaultSize,
-            ),
-            trailing: const Text('About My Skills'),
+        HeaderTile(
+          leading: SvgPicture.asset(
+            'assets/images/icons/code-slash-outline.svg',
+            color: Colors.white,
+            width: 2.4 * defaultSize,
+          ),
+          trailing: const Text(
+            'About My Skills',
+            style: TextStyle(color: Colors.white),
           ),
         ),
-        Card(
-          child: Padding(
-            padding: EdgeInsets.all(1.6 * defaultSize),
-            child: Column(children: [
-              Row(
-                children: const [
-                  Expanded(
-                    child: Text(
-                        "With 3 years of experience in Flutter mobile development, making me proficient in the use of the Flutter framework and mobile development best practices"),
-                  )
-                ],
-              ),
-            ]),
-          ),
-        ),
-        Card(
-          elevation: 0,
-          child: HeaderTile(
-            leading: Image.asset(
-              'assets/images/icons/skills/ux.png',
-              width: 2.4 * defaultSize,
+        Padding(
+          padding: EdgeInsets.all(1.6 * defaultSize),
+          child: Column(children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "With 3 years of experience in Flutter mobile development, making me proficient in the use of the Flutter framework and mobile development best practices",
+                    style: TextStyle(
+                        fontSize: 1.4 * defaultSize, color: Colors.white),
+                  ),
+                )
+              ],
             ),
-            trailing: const Text('Main'),
+          ]),
+        ),
+        HeaderTile(
+          leading: Image.asset(
+            'assets/images/icons/skills/user-interface.png',
+            width: 2.4 * defaultSize,
+          ),
+          trailing: const Text(
+            'Primary',
+            style: TextStyle(color: Colors.white),
           ),
         ),
         SizedBox(
@@ -129,14 +131,14 @@ class _SkillsState extends State<Skills> {
             ),
           ),
         ),
-        Card(
-          elevation: 0,
-          child: HeaderTile(
-            leading: Image.asset(
-              'assets/images/icons/skills/ux.png',
-              width: 2.4 * defaultSize,
-            ),
-            trailing: const Text('Other Skills'),
+        HeaderTile(
+          leading: Image.asset(
+            'assets/images/icons/skills/ux.png',
+            width: 2.4 * defaultSize,
+          ),
+          trailing: const Text(
+            'Other Skills',
+            style: TextStyle(color: Colors.white),
           ),
         ),
         CarouselSlider.builder(
@@ -156,8 +158,8 @@ class _SkillsState extends State<Skills> {
             )),
         DotsIndicator(
           decorator: const DotsDecorator(
-            color: Colors.grey,
-            activeColor: Colors.red,
+            color: Colors.white,
+            activeColor: Color(0xFF001220),
           ),
           dotsCount: items.length,
           position: currentItemIndex.toDouble(),
