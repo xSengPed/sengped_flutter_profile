@@ -104,7 +104,7 @@ class _ProfileState extends State<Profile> {
                     Expanded(
                       child: Text(
                         """
-Currently im working as mobile developer with Exvention.\nUse Flutter for mobile application development.My project associates with Krung Thai Bank (GLO Lotto : Digital Lottery).
+Currently im working as mobile developer with Exvention.\nUse Flutter for mobile application development. My project associates with Krungthai Bank.
 I have an experience in mobile applications development for 3 years.\nI'm able to use front end web applications framework such as Vue and React.
 """,
                         style: TextStyle(fontSize: 1.2 * defaultSize),

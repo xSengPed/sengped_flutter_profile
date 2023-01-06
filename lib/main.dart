@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       builder: (BuildContext context, Orientation orientation,
           ScreenType screenType) {
         return DevicePreview(
-          isToolbarVisible: true,
+          // isToolbarVisible: true,
           enabled: screenType != ScreenType.mobile,
           builder: (context) {
             return MaterialApp(
