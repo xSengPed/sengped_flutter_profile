@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:sengped_flutter_profile/screens/sections/experience.dart';
 
 class Alert {
   show(BuildContext context) {
@@ -54,6 +53,8 @@ class ContactUsModalSheet extends StatefulWidget {
 
 class _ContactUsModalSheetState extends State<ContactUsModalSheet> {
   bool disableCopy = false;
+
+  double defaultSize = 10;
   void copyContent(BuildContext context, String content) async {
     if (!disableCopy) {
       setState(() {
