@@ -13,11 +13,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late HomeController ctrl;
+  HomeController ctrl = HomeController();
 
   @override
   void initState() {
-    ctrl = HomeController(context);
+    ctrl = HomeController();
+
     super.initState();
   }
 
@@ -25,46 +26,41 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => ctrl,
-      child: Scaffold(
-        body: Stack(
-          children: [
-            SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: SvgPicture.asset(
-                'assets/images/layered-waves-haikei.svg',
-                fit: BoxFit.cover,
+      child: Consumer<HomeController>(builder: (context, con, child) {
+        return Scaffold(
+          body: Stack(
+            children: [
+              SizedBox(
+                height: double.infinity,
+                width: double.infinity,
+                child: SvgPicture.asset(
+                  'assets/images/layered-waves-haikei.svg',
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              color: Colors.transparent,
-              child: Column(
-                children: [
-                  Selector<HomeController, int>(
-                    builder: (context, value, child) {
-                      return TopBar(title: ctrl.pagesName[0]);
-                    },
-                    selector: (_, HomeController p) {
-                      return 0;
-                    },
-                  ),
-                  Flexible(
-                    child: PageView(
-                      controller: ctrl.pageController,
-                      children: ctrl.pages,
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                color: Colors.transparent,
+                child: Column(
+                  children: [
+                    TopBar(title: ctrl.pagesName[con.activeIndex]),
+                    Flexible(
+                      child: PageView(
+                        controller: ctrl.pageController,
+                        children: ctrl.pages,
+                      ),
                     ),
-                  ),
-                  MyNavigationBar(
-                    controller: ctrl,
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+                    MyNavigationBar(
+                      controller: ctrl,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }

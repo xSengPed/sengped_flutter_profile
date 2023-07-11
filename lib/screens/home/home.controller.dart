@@ -5,8 +5,6 @@ import 'package:sengped_flutter_profile/screens/profile_page/profile_page.dart';
 import 'package:sengped_flutter_profile/screens/skills_page/skills_page.dart';
 
 class HomeController extends ChangeNotifier {
-  BuildContext context;
-
   List<String> pagesName = const [
     "Profile",
     "Skills",
@@ -23,8 +21,9 @@ class HomeController extends ChangeNotifier {
   ScrollController scrollController = ScrollController();
 
   int activeIndex = 0;
-  HomeController(this.context) {
+  HomeController() {
     pageController.addListener(() {
+      activeIndex = pageController.page?.toInt() ?? 0;
       notifyListeners();
     });
   }

@@ -122,12 +122,6 @@ class _MainMenuState extends State<MainMenu> {
                         }),
                         InkWell(
                           onTap: () => Alert().showModal(context),
-                          // child: SvgPicture.asset(
-                          //   'assets/images/icons/information-circle-outline.svg',
-                          //   color: appbarTextColor,
-                          //   width: 2.8 * defaultSize,
-                          // ),
-
                           child: Icon(Icons.info_outline_rounded,
                               color: appbarTextColor, size: 2.8 * defaultSize),
                         )

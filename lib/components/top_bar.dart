@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sengped_flutter_profile/components/general_dialog.dart';
+import 'package:sengped_flutter_profile/screens/skills_page/skills_page.dart';
 
 class TopBar extends StatelessWidget {
   final String title;
@@ -17,10 +19,22 @@ class TopBar extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          Text(
-            title,
-            style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w800, color: Colors.white),
+          Row(
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white),
+              ),
+              const Spacer(),
+              InkWell(
+                onTap: () => Alert().showModal(context),
+                child: const Icon(Icons.info_outline_rounded,
+                    color: Colors.white, size: 28),
+              )
+            ],
           ),
         ],
       ),

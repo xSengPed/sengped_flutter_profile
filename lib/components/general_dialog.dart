@@ -31,12 +31,14 @@ class Alert {
 
   showModal(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: const Color(0xff001220),
       context: context,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
+      enableDrag: false,
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
-        return ContactUsModalSheet();
+        return const SafeArea(child: ContactUsModalSheet());
       },
     );
   }
@@ -87,21 +89,23 @@ class _ContactUsModalSheetState extends State<ContactUsModalSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.9,
       width: double.infinity,
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(
-            color: const Color(0xff001220),
-          ),
+          // Container(
+          //   color: const Color(0xff001220),
+          // ),
           Column(children: [
             Container(
               height: 10 * defaultSize,
-              padding: EdgeInsets.symmetric(horizontal: 2.5 * defaultSize),
+              padding: EdgeInsets.symmetric(
+                horizontal: 2.5 * defaultSize,
+              ),
               child: Row(
                 children: [
                   Text('Contact Information',
