@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'package:sengped_flutter_profile/components/header_tile.dart';
 
-import 'package:sengped_flutter_profile/providers/screen_provider.dart';
 import 'package:sengped_flutter_profile/screens/exp_page/exp_page.controller.dart';
 import 'package:timelines/timelines.dart';
 
@@ -161,28 +160,6 @@ class _ExpPageState extends State<ExpPage> {
                         }
                       },
                     )),
-                Consumer<ScreenProvider>(
-                  builder: (context, ScreenProvider screenProvider, child) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: AnimatedOpacity(
-                        opacity: screenProvider.isScrollFinish ? 1.0 : 0,
-                        duration: const Duration(milliseconds: 200),
-                        child: SizedBox(
-                          height: 4.5 * defaultSize,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  elevation: 0,
-                                  backgroundColor: const Color(0xFF001220),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50))),
-                              child: const Text('View Another Projects'),
-                              onPressed: () {}),
-                        ),
-                      ),
-                    );
-                  },
-                ),
               ],
             ),
           ),

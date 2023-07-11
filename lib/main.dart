@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool enableDevicePreview = false;
+  bool enableDevicePreview = true;
   @override
   void initState() {
     super.initState();
@@ -31,31 +32,32 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(textTheme: GoogleFonts.kanitTextTheme()),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => ScreenProvider(),
-          )
-        ],
-        child: Stack(children: [
-          MultiProvider(
-            providers: [
-              ChangeNotifierProvider(
-                create: (_) => ScreenProvider(),
-              )
-            ],
-            child: enableDevicePreview
-                ? DevicePreview(
-                    builder: (context) {
-                      return const Home();
-                    },
-                  )
-                : const Home(),
+    return ResponsiveSizer(
+      builder: (BuildContext context, Orientation orientation,
+          ScreenType screenType) {
+        return MaterialApp(
+          theme: ThemeData(textTheme: GoogleFonts.kanitTextTheme()),
+          scrollBehavior: const MaterialScrollBehavior().copyWith(
+            dragDevices: {
+              PointerDeviceKind.mouse,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.stylus,
+              PointerDeviceKind.unknown
+            },
           ),
-        ]),
-      ),
+          useInheritedMediaQuery: true,
+          debugShowCheckedModeBanner: false,
+          home: enableDevicePreview
+              ? DevicePreview(
+                  isToolbarVisible: false,
+                  enabled: screenType != ScreenType.mobile,
+                  builder: (context) {
+                    return const Home();
+                  },
+                )
+              : const Home(),
+        );
+      },
     );
   }
 }

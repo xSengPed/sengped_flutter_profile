@@ -34,7 +34,6 @@ class Alert {
       backgroundColor: const Color(0xff001220),
       context: context,
       isScrollControlled: true,
-      enableDrag: false,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
