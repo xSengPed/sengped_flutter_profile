@@ -3,15 +3,12 @@ import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:sengped_flutter_profile/api_services.dart';
-import 'package:sengped_flutter_profile/providers/screen_provider.dart';
-import 'package:sengped_flutter_profile/screens/main_menu.dart';
+
+import 'package:sengped_flutter_profile/screens/home/home.dart';
 
 void main() {
-  ApiServices().init();
-
   runApp(const MyApp());
 }
 
@@ -23,6 +20,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool enableDevicePreview = true;
   @override
   void initState() {
     super.initState();
@@ -34,35 +32,27 @@ class _MyAppState extends State<MyApp> {
     return ResponsiveSizer(
       builder: (BuildContext context, Orientation orientation,
           ScreenType screenType) {
-        return DevicePreview(
-          isToolbarVisible: false,
-          enabled: screenType != ScreenType.mobile,
-          builder: (context) {
-            return MaterialApp(
-              scrollBehavior: const MaterialScrollBehavior().copyWith(
-                dragDevices: {
-                  PointerDeviceKind.mouse,
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.stylus,
-                  PointerDeviceKind.unknown
-                },
-              ),
-              useInheritedMediaQuery: true,
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                textTheme: GoogleFonts.kanitTextTheme(),
-                primarySwatch: Colors.blue,
-              ),
-              home: MultiProvider(
-                providers: [
-                  ChangeNotifierProvider(
-                    create: (_) => ScreenProvider(),
-                  )
-                ],
-                child: const MainMenu(),
-              ),
-            );
-          },
+        return MaterialApp(
+          theme: ThemeData(textTheme: GoogleFonts.kanitTextTheme()),
+          scrollBehavior: const MaterialScrollBehavior().copyWith(
+            dragDevices: {
+              PointerDeviceKind.mouse,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.stylus,
+              PointerDeviceKind.unknown
+            },
+          ),
+          useInheritedMediaQuery: true,
+          debugShowCheckedModeBanner: false,
+          home: enableDevicePreview
+              ? DevicePreview(
+                  isToolbarVisible: false,
+                  enabled: screenType != ScreenType.mobile,
+                  builder: (context) {
+                    return const Home();
+                  },
+                )
+              : const Home(),
         );
       },
     );

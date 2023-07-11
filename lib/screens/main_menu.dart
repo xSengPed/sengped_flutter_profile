@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,10 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'package:sengped_flutter_profile/components/general_dialog.dart';
 import 'package:sengped_flutter_profile/providers/screen_provider.dart';
-import 'package:sengped_flutter_profile/screens/sections/education.dart';
-import 'package:sengped_flutter_profile/screens/sections/experience.dart';
-import 'package:sengped_flutter_profile/screens/sections/profile.dart';
-import 'package:sengped_flutter_profile/screens/sections/skills.dart';
+
 import 'package:sengped_flutter_profile/size_config.dart';
 
 class MainMenu extends StatefulWidget {
@@ -26,12 +22,7 @@ class _MainMenuState extends State<MainMenu> {
   late Color appbarColor;
   bool isFinish = false;
   late final ScrollController _scrollController = ScrollController();
-  List<Widget> sections = [
-    const Profile(),
-    const Skills(),
-    const Education(),
-    const Experience(),
-  ];
+  List<Widget> sections = [];
   int currentPage = 0;
 
   Color? getActiveColor(index) {
@@ -131,12 +122,6 @@ class _MainMenuState extends State<MainMenu> {
                         }),
                         InkWell(
                           onTap: () => Alert().showModal(context),
-                          // child: SvgPicture.asset(
-                          //   'assets/images/icons/information-circle-outline.svg',
-                          //   color: appbarTextColor,
-                          //   width: 2.8 * defaultSize,
-                          // ),
-
                           child: Icon(Icons.info_outline_rounded,
                               color: appbarTextColor, size: 2.8 * defaultSize),
                         )

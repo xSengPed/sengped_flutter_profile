@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:sengped_flutter_profile/screens/sections/experience.dart';
 
 class Alert {
   show(BuildContext context) {
@@ -32,12 +31,13 @@ class Alert {
 
   showModal(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: const Color(0xff001220),
       context: context,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (context) {
-        return ContactUsModalSheet();
+        return const SafeArea(child: ContactUsModalSheet());
       },
     );
   }
@@ -54,6 +54,8 @@ class ContactUsModalSheet extends StatefulWidget {
 
 class _ContactUsModalSheetState extends State<ContactUsModalSheet> {
   bool disableCopy = false;
+
+  double defaultSize = 10;
   void copyContent(BuildContext context, String content) async {
     if (!disableCopy) {
       setState(() {
@@ -86,21 +88,23 @@ class _ContactUsModalSheetState extends State<ContactUsModalSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.9,
       width: double.infinity,
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(
-            color: const Color(0xff001220),
-          ),
+          // Container(
+          //   color: const Color(0xff001220),
+          // ),
           Column(children: [
             Container(
               height: 10 * defaultSize,
-              padding: EdgeInsets.symmetric(horizontal: 2.5 * defaultSize),
+              padding: EdgeInsets.symmetric(
+                horizontal: 2.5 * defaultSize,
+              ),
               child: Row(
                 children: [
                   Text('Contact Information',

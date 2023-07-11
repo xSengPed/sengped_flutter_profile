@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sengped_flutter_profile/components/education_widget.dart';
 import 'package:sengped_flutter_profile/components/header_tile.dart';
-import 'package:sengped_flutter_profile/screens/sections/experience.dart';
 
-class Education extends StatelessWidget {
-  const Education({Key? key}) : super(key: key);
+class EduPage extends StatefulWidget {
+  const EduPage({Key? key}) : super(key: key);
 
+  @override
+  State<EduPage> createState() => _EduPageState();
+}
+
+class _EduPageState extends State<EduPage> {
+  double defaultSize = 10;
   @override
   Widget build(BuildContext context) {
     return Padding(
