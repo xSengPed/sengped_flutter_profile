@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sengped_flutter_profile/components/award.dart';
@@ -83,8 +84,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: const EdgeInsets.all(16.0),
                               child: GlassContainer(
                                 child: DefaultTextStyle(
-                                  style: const TextStyle(
-                                      color: Colors.white, fontFamily: 'kanit'),
+                                  style: GoogleFonts.kanit(
+                                    color: Colors.white,
+                                  ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Column(
