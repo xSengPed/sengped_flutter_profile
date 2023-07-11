@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:sengped_flutter_profile/screens/sections/experience.dart';
-
 class EducationWidget extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
@@ -13,6 +11,7 @@ class EducationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double defaultSize = 10;
     return Container(
       constraints: BoxConstraints(minHeight: 15 * defaultSize),
       padding: EdgeInsets.all(1 * defaultSize),
