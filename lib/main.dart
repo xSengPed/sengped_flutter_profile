@@ -7,8 +7,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:sengped_flutter_profile/providers/screen_provider.dart';
 import 'package:sengped_flutter_profile/screens/home/home.dart';
-import 'package:sengped_flutter_profile/screens/main_menu.dart';
-import 'package:sengped_flutter_profile/screens/profile_page/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -61,15 +59,6 @@ class _MyAppState extends State<MyApp> {
                 }
               },
             ),
-
-            // enableDevicePreview
-            //     ? DevicePreview(
-            //         isToolbarVisible: false,
-            //         builder: (context) {
-            //           return const Home();
-            //         },
-            //       )
-            //     : const Home()
           ),
         ]),
       ),
