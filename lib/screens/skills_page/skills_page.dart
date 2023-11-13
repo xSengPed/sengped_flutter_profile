@@ -24,7 +24,7 @@ class _SkillsPageState extends State<SkillsPage> {
   @override
   void initState() {
     ctrl = SkillsPageController();
-    log('skill');
+    // log('skill');
     super.initState();
   }
 

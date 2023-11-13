@@ -31,9 +31,9 @@ class ExpPageController extends ChangeNotifier {
         logo: Assets.alicorn,
         desc: "- Noochuap Delivery associate with Alicorn"),
     Workplace(
-        company: "Freelance",
-        position: "Front End Developer",
-        location: "Phuket , Thailand",
+        company: "Digital Organic",
+        position: "Software Engineer",
+        location: "Bangkok , Thailand",
         start: "Oct 2021",
         end: "Oct 2022",
         logo: null),

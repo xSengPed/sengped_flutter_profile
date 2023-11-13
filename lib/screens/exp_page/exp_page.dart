@@ -97,12 +97,14 @@ class _ExpPageState extends State<ExpPage> {
                                                       fontWeight:
                                                           FontWeight.w600)),
                                               Text(
-                                                  con.workplaces[index]
-                                                          .position ??
-                                                      "",
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          1.2 * defaultSize)),
+                                                con.workplaces[index]
+                                                        .position ??
+                                                    "",
+                                                style: TextStyle(
+                                                    fontSize: 1.0 * defaultSize,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
                                               Text(
                                                   "${con.workplaces[index].start} - ${con.workplaces[index].end}",
                                                   style: TextStyle(
