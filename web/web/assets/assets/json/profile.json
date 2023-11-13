@@ -1,0 +1,18 @@
+{
+    "avatar_url" : "https://avatars.githubusercontent.com/u/23716821?v=4",
+    "name" : "Donnukrit Satirakul",
+    "job_title" : "Front End Developer",
+    "work_info" : "Exvention Co.,Ekkamai,Bangkok TH",
+    "introduction" : "I've an experience in Mobile Application Development for 3 years.Skilled in Flutter including Clean MVC Architecture and TDD.\nMy currently project is Paotang GLO (Digital Lottery) by Krungthai Bank collaborated with Accenture, Prior Solution, Arise\n",
+    "awards" : [{
+        "title" : "The 19th Thailand IT Contest Festival 2020",
+        "issue_by" : "NECTEC",
+        "date" : "March 2020",
+        "desc" : "Got a scholarship funded project development, Voice Assistant Robot.\nNational Software Contest'21"
+    },{
+        "title" : "Nation Software Contest : Southern Regional",
+        "issue_by" : "Computer Engineering Dept.,Faculty of Engineering,Prince of Songkhla University",
+        "date" : "Febulary 2020",
+        "desc" : "Assiociate with PSU Phuket as Competitor"
+    }]
+}
