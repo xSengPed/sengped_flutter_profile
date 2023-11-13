@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
                     TopBar(title: ctrl.pagesName[con.activeIndex]),
                     Flexible(
                       child: PageView(
+                        physics: NeverScrollableScrollPhysics(),
                         controller: ctrl.pageController,
                         children: ctrl.pages,
                       ),

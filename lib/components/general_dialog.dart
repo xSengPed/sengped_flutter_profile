@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:another_flushbar/flushbar.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,6 +32,8 @@ class Alert {
 
   showModal(BuildContext context) {
     showModalBottomSheet(
+      constraints:
+          BoxConstraints(maxWidth: Devices.ios.iPhone13.screenSize.width),
       backgroundColor: const Color(0xff001220),
       context: context,
       isScrollControlled: true,
@@ -64,6 +67,7 @@ class _ContactUsModalSheetState extends State<ContactUsModalSheet> {
       });
       await Clipboard.setData(ClipboardData(text: content));
       Flushbar(
+        maxWidth: Devices.ios.iPhone13.screenSize.width,
         flushbarPosition: FlushbarPosition.TOP,
         message: "Content has been copied!",
         backgroundColor: Colors.green[700]!,
@@ -90,7 +94,7 @@ class _ContactUsModalSheetState extends State<ContactUsModalSheet> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.9,
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width * 0.9,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
       ),

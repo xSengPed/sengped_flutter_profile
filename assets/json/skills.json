@@ -1,73 +1,88 @@
 {
-    "data" : [{
-        "id" : 0,
-        "name" : "Flutter",
-        "type" :"framework",
-        "img_src" : "assets/images/icons/skills/flutter.png"
+  "data": [
+    {
+      "id": 0,
+      "name": "Flutter",
+      "type": "framework",
+      "img_src": "assets/images/icons/skills/flutter.png"
     },
     {
-        "id" : 1,
-        "name" : "Next.ts",
-        "type" :"framework",
-        "img_src" : "assets/images/icons/skills/next.png"
+      "id": 1,
+      "name": "Next.ts",
+      "type": "framework",
+      "img_src": "assets/images/icons/skills/next.png"
     },
     {
-        "id" : 2,
-        "name" : "Nuxt",
-        "type" :"framework",
-        "img_src" : "assets/images/icons/skills/nuxt.png"
+      "id": 2,
+      "name": "Nuxt",
+      "type": "framework",
+      "img_src": "assets/images/icons/skills/nuxt.png"
+    },
+    {
+      "id": 4,
+      "name": "Tailwind",
+      "type": "framework",
+      "img_src": "assets/images/icons/skills/tailwind.svg"
+    },
+    {
+      "id": 5,
+      "name": "Vuetify",
+      "type": "framework",
+      "img_src": "assets/images/icons/skills/vuetify.svg"
+    },
+    {
+      "id": 6,
+      "name": "Ant Design",
+      "type": "framework",
+      "img_src": "assets/images/icons/skills/antd.svg"
+    },
+    {
+      "id": 7,
+      "name": "Dart",
+      "type": "lang",
+      "img_src": "assets/images/icons/skills/dart.png"
+    },
+    {
+      "id": 8,
+      "name": "Swift",
+      "type": "lang",
+      "img_src": "assets/images/icons/skills/swift.svg"
+    },
+    {
+      "id": 9,
+      "name": "Java",
+      "type": "lang",
+      "img_src": "assets/images/icons/skills/java.png"
+    },
+    {
+      "id": 10,
+      "name": "Type Script",
+      "type": "lang",
+      "img_src": "assets/images/icons/skills/typescript.png"
+    },
+    {
+      "id": 11,
+      "name": "Firebase",
+      "type": "db",
+      "img_src": "assets/images/icons/skills/firebase.png"
+    },
+    {
+      "id": 12,
+      "name": "Supabase",
+      "type": "db",
+      "img_src": "assets/images/icons/skills/supabase.png"
+    },
+    {
+      "id": 13,
+      "name": "MongoDB",
+      "type": "db",
+      "img_src": "assets/images/icons/skills/mongodb.svg"
+    },
+    {
+      "id": 14,
+      "name": "Golang",
+      "type": "lang",
+      "img_src": "assets/images/icons/skills/go.svg"
     }
-    ,{
-        "id" : 4,
-        "name" : "Tailwind",
-        "type" :"framework",
-        "img_src" : "assets/images/icons/skills/tailwind.svg"
-    },
-    {
-        "id" : 5,
-        "name" : "Vuetify",
-        "type" :"framework",
-        "img_src" : "assets/images/icons/skills/vuetify.svg"
-    },
-    {
-        "id" : 6,
-        "name" : "Ant Design",
-        "type" :"framework",
-        "img_src" : "assets/images/icons/skills/antd.svg"
-    },{
-        "id" : 7,
-        "name" : "Dart",
-        "type" :"lang",
-        "img_src" : "assets/images/icons/skills/dart.png"
-    },
-    {
-        "id" : 8,
-        "name" : "Java",
-        "type" :"lang",
-        "img_src" : "assets/images/icons/skills/java.png"
-    },
-    {
-        "id" : 9,
-        "name" : "Type Script",
-        "type" :"lang",
-        "img_src" : "assets/images/icons/skills/typescript.png"
-    },
-    {
-        "id" : 10,
-        "name" : "Firebase",
-        "type" :"db",
-        "img_src" : "assets/images/icons/skills/firebase.png"
-    },
-    {
-        "id" : 11,
-        "name" : "Supabase",
-        "type" :"db",
-        "img_src" : "assets/images/icons/skills/supabase.png"
-    },
-    {
-        "id" : 12,
-        "name" : "MongoDB",
-        "type" :"db",
-        "img_src" : "assets/images/icons/skills/mongodb.svg"
-    }]
+  ]
 }

@@ -18,6 +18,7 @@ class HomeController extends ChangeNotifier {
     ExpPage()
   ];
   PageController pageController = PageController(initialPage: 0);
+
   ScrollController scrollController = ScrollController();
 
   int activeIndex = 0;
@@ -36,6 +37,7 @@ class HomeController extends ChangeNotifier {
     } else {
       pageController.animateToPage(pageNumber,
           curve: Curves.linear, duration: const Duration(milliseconds: 400));
+
       notifyListeners();
     }
   }

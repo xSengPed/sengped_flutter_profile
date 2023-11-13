@@ -22,7 +22,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool enableDevicePreview = false;
+  bool enableDevicePreview = true;
   @override
   void initState() {
     super.initState();
@@ -46,13 +46,30 @@ class _MyAppState extends State<MyApp> {
                 create: (_) => ScreenProvider(),
               )
             ],
-            child: enableDevicePreview
-                ? DevicePreview(
-                    builder: (context) {
-                      return const Home();
-                    },
-                  )
-                : const Home(),
+            child: ResponsiveSizer(
+              builder: (context, orientation, screen) {
+                if (screen == ScreenType.mobile) {
+                  return Center(child: Home());
+                } else {
+                  return Center(
+                    child: DeviceFrame(
+                      device: Devices.ios.iPhone13,
+                      screen: Home(),
+                      isFrameVisible: true,
+                    ),
+                  );
+                }
+              },
+            ),
+
+            // enableDevicePreview
+            //     ? DevicePreview(
+            //         isToolbarVisible: false,
+            //         builder: (context) {
+            //           return const Home();
+            //         },
+            //       )
+            //     : const Home()
           ),
         ]),
       ),
